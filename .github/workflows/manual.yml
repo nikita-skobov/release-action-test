@@ -28,7 +28,7 @@ jobs:
       - name: download-git-filter-repo
         run: git clone https://github.com/newren/git-filter-repo
       - name: install git-filter-repo
-        run: cp git-filter-repo/git-filter-repo /usr/lib/git-core/git-filter-repo
+        run: sudo cp git-filter-repo/git-filter-repo /usr/lib/git-core/git-filter-repo
       - name: test git-filter-repo
         run: git filter-repo --version
       - name: rust-toolchain
