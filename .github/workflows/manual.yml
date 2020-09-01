@@ -25,8 +25,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: checkout code
-        uses: actions/checkout@v2
+      - name: clonepls
+        id: clone
+        run: git clone https://github.com/nikita-skobov/git-monorepo-tools
+      - name: cd_into_clone
+        run: cd git-monorepo-tools && ls -l
       - name: create release
         id: create_release
         uses: actions/create-release@v1
