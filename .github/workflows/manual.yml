@@ -25,11 +25,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: rust-toolchain
+        uses: actions-rs/toolchain@v1.0.6
+      - name: bats
+        uses: mig4/setup-bats@v1.0.1
       - name: clonepls
         id: clone
-        run: git clone https://github.com/nikita-skobov/git-monorepo-tools .
+        run: git clone --single-branch --branch rewrite-rust https://github.com/nikita-skobov/git-monorepo-tools .
       - name: ls
         run: echo "$PWD" && ls -l
+      - name: testpls
+        run: ./test/run_tests.sh
       - name: create release
         id: create_release
         uses: actions/create-release@v1
