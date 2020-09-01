@@ -43,7 +43,7 @@ jobs:
           draft: false
           prerelease: false
       - name: make asset
-        run: zip --junk-paths my-artifcat README.md
+        run: zip --junk-paths my-artifact README.md
       - name: upload asset
         id: upload-asset
         uses: actions/upload-release-asset@v1
