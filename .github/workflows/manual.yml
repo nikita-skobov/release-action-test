@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: rust-toolchain
         uses: actions-rs/toolchain@v1.0.6
+        with:
+          toolchain: x86_64-unknown-linux-gnu
       - name: bats
         uses: mig4/setup-bats@v1.0.1
       - name: clonepls
