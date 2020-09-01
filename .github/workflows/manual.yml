@@ -28,8 +28,6 @@ jobs:
       - name: clonepls
         id: clone
         run: git clone https://github.com/nikita-skobov/git-monorepo-tools .
-      - name: cd_into_clone2
-        run: cd git-monorepo-tools && ls -l
       - name: ls
         run: echo "$PWD" && ls -l
       - name: create release
