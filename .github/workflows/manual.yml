@@ -63,7 +63,11 @@ jobs:
       - name: lstest2
         run: ls -la target/${{ matrix.job.target }}/release
       - name: echotest
-        run: realpath ./target/${{ matrix.job.target }}/release/mgt
+        run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
+      - name: echotest2
+        run: echo $(realpath ./target/${{ matrix.job.target }}/release/mg)
+      - name: echotest3
+        run: echo "$PROGRAM_PATH"
       - name: cargotest
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
