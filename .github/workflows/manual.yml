@@ -50,13 +50,13 @@ jobs:
       - name: ls
         run: echo "$PWD" && ls -l
       - name: cargobuild
-        uses: action-rs/cargo@v1
+        uses: action-rs/cargo@v1.0.1
         with:
           use-cross: ${{ matrix.job.usecross }}
           command: build
           args: --release --target=${{ matrix.job.target }}
       - name: cargotest
-        uses: action-rs/cargo@v1
+        uses: action-rs/cargo@v1.0.1
         with:
           use-cross: ${{ matrix.job.usecross }}
           command: test
