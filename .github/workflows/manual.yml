@@ -25,7 +25,7 @@ jobs:
     strategy:
       matrix:
         job:
-          - { os: ubuntu-18.04 , target: i686-unknown-linux-gnu , usecross: false }
+          - { os: ubuntu-18.04 , target: i686-unknown-linux-gnu , usecross: true }
           - { os: ubuntu-18.04 , target: x86_64-unknown-linux-gnu , usecross: false }
 # cant get it to work on windows yet :/
 #           - { os: windows-latest, target: x86_64-pc-windows-msvc, usecross: false }
