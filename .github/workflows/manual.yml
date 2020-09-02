@@ -61,9 +61,9 @@ jobs:
       - name: lstest
         run: ls -la target
       - name: lstest2
-        run: ls -la target/${{ matrix.job.target }}
+        run: ls -la target/${{ matrix.job.target }}/release
       - name: echotest
-        run: PROGRAM_PATH="$(realpath ./target/${{ matrix.job.target }}/mgt)" echo "$PROGRAM_PATH"
+        run: PROGRAM_PATH="$(realpath ./target/${{ matrix.job.target }}/release/mgt)" echo "$PROGRAM_PATH"
       - name: cargotest
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
