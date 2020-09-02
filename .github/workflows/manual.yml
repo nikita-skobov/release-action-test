@@ -36,7 +36,12 @@ jobs:
       - name: gitpathtest
         run: git --exec-path
       - name: install git-filter-repo
-        run: bash -c sudo cp git-filter-repo/git-filter-repo $(git --exec-path)/git-filter-repo
+        run: |
+          if [[ ${{ matrix.job.os }} == *"windows"* ]]; then
+            echo "yerr on windows"
+          else
+            sudo cp git-filter-repo/git-filter-repo $(git --exec-path)/git-filter-repo          
+          fi
       - name: test git-filter-repo
         run: git filter-repo --version
       - name: delete-filter-repo-repo
