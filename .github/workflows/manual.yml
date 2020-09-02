@@ -64,16 +64,20 @@ jobs:
         run: ls -la target/${{ matrix.job.target }}/release
       - name: echotest
         run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
-      - name: echotest2
-        run: echo $(realpath ./target/${{ matrix.job.target }}/release/mg)
-      - name: echotest3
-        run: echo "$PROGRAM_PATH"
       - name: cargotest
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
           use-cross: ${{ matrix.job.usecross }}
           command: test
           args: --target=${{ matrix.job.target }}
+      - name: e2e_test_general
+        run: bats test/general
+      - name: e2e_test_splitout
+        run: bats test/splitout
+      - name: e2e_test_splitin
+        run: bats test/splitin
+      - name: e2e_test_splitinas
+        run: bats test/splitinas
 #       - name: testpls
 #         run: ./test/run_tests.sh
 #       - name: create release
