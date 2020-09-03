@@ -32,18 +32,20 @@ jobs:
           - { os: windows-latest, target: x86_64-pc-windows-msvc, usecross: false }
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: rust-toolchain
+      - name: install_python
+        run: python3 --version
+      - name: install_rust
         uses: actions-rs/toolchain@v1.0.6
         with:
           toolchain: stable
           target: ${{ matrix.job.target }}
           profile: minimal
-      - name: bats
+      - name: install_bats
         uses: mig4/setup-bats@v1.0.1
       - name: clonepls
         id: clone
         run: git clone --single-branch --branch rewrite-rust-github https://github.com/nikita-skobov/git-monorepo-tools .
-      - name: download_and_install_git_filter_repo
+      - name: install_git_filter_repo
         run: bash .github/install-git-filter-repo.sh ${{ matrix.job.os }}
       - name: cargobuild
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
