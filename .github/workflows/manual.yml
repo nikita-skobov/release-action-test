@@ -32,8 +32,8 @@ jobs:
           - { os: windows-latest, target: x86_64-pc-windows-msvc, usecross: false }
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: install_python
-        run: python3 --version
+      - name: install_python # default is 3
+        uses: actions/setup-python@v2
       - name: install_rust
         uses: actions-rs/toolchain@v1.0.6
         with:
