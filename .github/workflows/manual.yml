@@ -38,6 +38,10 @@ jobs:
         run: echo "hellooooo"
       - name: echotest2
         run: echo "$HELLO"
+      - name: echotest3
+        run: echo $hello1
+        env:
+          hello1: "hellooooooo111"
       - name: install_rust
         uses: actions-rs/toolchain@v1.0.6
         with:
