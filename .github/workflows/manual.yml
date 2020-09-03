@@ -38,10 +38,6 @@ jobs:
         run: echo "hellooooo"
       - name: echotest2
         run: echo "$HELLO"
-      - name: echotest3
-        run: echo $hello1
-        env:
-          hello1: "hellooooooo111"
       - name: install_rust
         uses: actions-rs/toolchain@v1.0.6
         with:
@@ -53,6 +49,10 @@ jobs:
       - name: checkout_code
         id: clone
         run: git clone --single-branch --branch rewrite-rust-github https://github.com/nikita-skobov/git-monorepo-tools .
+      - name: echotest3
+        run: bash .github/make-mgt-executable.sh ${{ matrix.job.os }}
+        env:
+          PROGRAM_PATH: "hellooooooo111"
       - name: install_git_filter_repo
         run: bash .github/install-git-filter-repo.sh ${{ matrix.job.os }}
       - name: build_executable
