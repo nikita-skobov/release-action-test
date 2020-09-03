@@ -32,6 +32,12 @@ jobs:
           - { os: windows-latest, target: x86_64-pc-windows-msvc, usecross: false }
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: envtest1
+        run: echo ::set-env name=HELLO::hello_world
+      - name: echotest1
+        run: echo "hellooooo"
+      - name: echotest2
+        run: echo "$HELLO"
       - name: install_rust
         uses: actions-rs/toolchain@v1.0.6
         with:
