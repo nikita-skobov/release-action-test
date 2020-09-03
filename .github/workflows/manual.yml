@@ -34,8 +34,10 @@ jobs:
     steps:
       - name: test_python2
         run: python --version
-      - name: install_python # default is 3
-        uses: actions/setup-python@v2
+      - name: link_python3
+        run: |
+          cd C:\Python3
+          mklink python3.exe python.exe
       - name: test_python3
         run: python3 --version
       - name: install_rust
