@@ -49,10 +49,6 @@ jobs:
       - name: checkout_code
         id: clone
         run: git clone --single-branch --branch rewrite-rust-github https://github.com/nikita-skobov/git-monorepo-tools .
-      - name: echotest3
-        run: bash .github/make-mgt-executable.sh ${{ matrix.job.os }}
-        env:
-          PROGRAM_PATH: "hellooooooo111"
       - name: install_git_filter_repo
         run: bash .github/install-git-filter-repo.sh ${{ matrix.job.os }}
       - name: build_executable
@@ -67,6 +63,10 @@ jobs:
         run: ls target/${{ matrix.job.target }}/release
       - name: echotest
         run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
+      - name: echotest3
+        run: bash .github/make-mgt-executable.sh ${{ matrix.job.os }}
+        env:
+          PROGRAM_PATH: "hellooooooo111"
       - name: program_path_exists
         run: ls "$PROGRAM_PATH"
       - name: unit_test
