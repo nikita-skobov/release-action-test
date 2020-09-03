@@ -40,21 +40,21 @@ jobs:
           profile: minimal
       - name: install_bats
         uses: mig4/setup-bats@v1.0.1
-      - name: clonepls
+      - name: checkout_code
         id: clone
         run: git clone --single-branch --branch rewrite-rust-github https://github.com/nikita-skobov/git-monorepo-tools .
       - name: install_git_filter_repo
         run: bash .github/install-git-filter-repo.sh ${{ matrix.job.os }}
-      - name: cargobuild
+      - name: build_executable
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
           use-cross: ${{ matrix.job.usecross }}
           command: build
           args: --release --target=${{ matrix.job.target }}
       - name: lstest
-        run: ls -la target
+        run: ls target
       - name: lstest2
-        run: ls -la target/${{ matrix.job.target }}/release
+        run: ls target/${{ matrix.job.target }}/release
       - name: echotest
         run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
       - name: cargotest
