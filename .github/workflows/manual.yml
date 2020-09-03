@@ -32,13 +32,6 @@ jobs:
           - { os: windows-latest, target: x86_64-pc-windows-msvc, usecross: false }
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: test_python2
-        run: python --version
-      - name: link_python3
-        run: |
-          where python
-      - name: test_python3
-        run: python3 --version
       - name: install_rust
         uses: actions-rs/toolchain@v1.0.6
         with:
