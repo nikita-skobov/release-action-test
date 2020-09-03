@@ -32,16 +32,6 @@ jobs:
           - { os: windows-latest, target: x86_64-pc-windows-msvc, usecross: false }
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: download-git-filter-repo
-        run: git clone https://github.com/newren/git-filter-repo
-      - name: gitpathtest
-        run: git --exec-path
-      - name: install git-filter-repo
-        run: sudo cp git-filter-repo/git-filter-repo $(git --exec-path)/git-filter-repo
-      - name: test git-filter-repo
-        run: git filter-repo --version
-      - name: delete-filter-repo-repo
-        run: rm -rf git-filter-repo/
       - name: rust-toolchain
         uses: actions-rs/toolchain@v1.0.6
         with:
@@ -52,7 +42,9 @@ jobs:
         uses: mig4/setup-bats@v1.0.1
       - name: clonepls
         id: clone
-        run: git clone --single-branch --branch rewrite-rust https://github.com/nikita-skobov/git-monorepo-tools .
+        run: git clone --single-branch --branch rewrite-rust-github https://github.com/nikita-skobov/git-monorepo-tools .
+      - name: download_and_install_git_filter_repo
+        run: bash .github/install-git-filter-repo.sh
       - name: cargobuild
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
