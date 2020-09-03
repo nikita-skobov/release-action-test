@@ -57,12 +57,16 @@ jobs:
         run: ls target/${{ matrix.job.target }}/release
       - name: echotest
         run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
-      - name: cargotest
+      - name: unit_test
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
         with:
           use-cross: ${{ matrix.job.usecross }}
           command: test
-          args: --target=${{ matrix.job.target }}
+          args: --release --target=${{ matrix.job.target }}
+      - name: program_path_test
+        run: echo "$PROGRAM_PATH"
+      - name: program_exe_test
+        run: bash -c "$PROGRAM_PATH -h"
       - name: e2e_test_general
         run: bats test/general
       - name: e2e_test_splitout
