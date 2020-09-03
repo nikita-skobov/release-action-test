@@ -36,8 +36,7 @@ jobs:
         run: python --version
       - name: link_python3
         run: |
-          cd C:\Python3
-          mklink python3.exe python.exe
+          where python
       - name: test_python3
         run: python3 --version
       - name: install_rust
