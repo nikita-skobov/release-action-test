@@ -76,7 +76,7 @@ jobs:
           command: test
           args: --release --target=${{ matrix.job.target }}
       - name: e2e_test_general
-        run: bats test/general
+        run: bash -c "echo helloworl && bats test/general"
         env:
           PROGRAM_PATH: mgt
       - name: e2e_test_splitout
