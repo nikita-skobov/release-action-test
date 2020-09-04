@@ -65,8 +65,8 @@ jobs:
         run: bash .github/make-mgt-executable.sh ${{ matrix.job.target }}
         env:
           PROGRAM_PATH: "hellooooooo111"
-      - name: echotest222
-        run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
+#       - name: echotest222
+#         run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
       - name: program_test
         run: mgt -h
       - name: program_path_exists
@@ -77,12 +77,10 @@ jobs:
           use-cross: ${{ matrix.job.usecross }}
           command: test
           args: --release --target=${{ matrix.job.target }}
-      - name: program_path_test
-        run: echo "$PROGRAM_PATH"
-      - name: program_exe_test
-        run: bash -c "$PROGRAM_PATH -h"
       - name: e2e_test_general
         run: bats test/general
+        env:
+          PROGRAM_PATH: mgt
       - name: e2e_test_splitout
         run: bats test/splitout
       - name: e2e_test_splitin
