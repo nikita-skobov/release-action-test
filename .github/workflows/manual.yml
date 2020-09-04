@@ -65,8 +65,14 @@ jobs:
           use-cross: ${{ matrix.job.usecross }}
           command: test
           args: --release --target=${{ matrix.job.target }}
+      - name: bats_test
+        run: bats --help
+      - name: lsls
+        run: ls
+      - name: lslsls
+        run: ls test
       - name: e2e_test_general
-        run: bash -c "echo helloworl && bats test/general"
+        run: bats test/general
         env:
           PROGRAM_PATH: mgt
       - name: e2e_test_splitout
