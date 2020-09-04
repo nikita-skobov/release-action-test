@@ -64,7 +64,7 @@ jobs:
       - name: echotest
         run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
       - name: echotest3
-        run: bash .github/make-mgt-executable.sh ${{ matrix.job.os }}
+        run: bash .github/make-mgt-executable.sh ${{ matrix.job.target }}
         env:
           PROGRAM_PATH: "hellooooooo111"
       - name: program_path_exists
