@@ -81,10 +81,16 @@ jobs:
           PROGRAM_PATH: mgt
       - name: e2e_test_splitout
         run: bats test/splitout
+        env:
+          PROGRAM_PATH: mgt
       - name: e2e_test_splitin
         run: bats test/splitin
+        env:
+          PROGRAM_PATH: mgt
       - name: e2e_test_splitinas
         run: bats test/splitinas
+        env:
+          PROGRAM_PATH: mgt
 #       - name: testpls
 #         run: ./test/run_tests.sh
 #       - name: create release
