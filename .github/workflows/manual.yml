@@ -32,12 +32,6 @@ jobs:
           - { os: windows-latest, target: x86_64-pc-windows-msvc, usecross: false }
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: envtest1
-        run: echo ::set-env name=HELLO::hello_world
-      - name: echotest1
-        run: echo "hellooooo"
-      - name: echotest2
-        run: echo "$HELLO"
       - name: install_rust
         uses: actions-rs/toolchain@v1.0.6
         with:
@@ -57,17 +51,13 @@ jobs:
           use-cross: ${{ matrix.job.usecross }}
           command: build
           args: --release --target=${{ matrix.job.target }}
-      - name: lstest
-        run: ls target
-      - name: lstest2
-        run: ls target/${{ matrix.job.target }}/release
-      - name: echotest3
+      - name: make_mgt_executable
         run: bash .github/make-mgt-executable.sh ${{ matrix.job.target }}
-        env:
-          PROGRAM_PATH: "hellooooooo111"
+# this works on linux but not windows for some reason...
 #       - name: echotest222
 #         run: echo ::set-env name=PROGRAM_PATH::$(realpath ./target/${{ matrix.job.target }}/release/mgt)
-      - name: program_test
+# just a sanity check that it is executable...
+      - name: program_help_test
         run: mgt -h
       - name: unit_test
         uses: actions-rs/cargo@ae10961054e4aa8b4aa7dffede299aaf087aa33b
