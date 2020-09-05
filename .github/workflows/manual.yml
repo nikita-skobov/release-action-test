@@ -41,8 +41,9 @@ jobs:
       - name: install_bats
         uses: mig4/setup-bats@v1.0.1
       - name: checkout_code
-        id: clone
-        run: git clone --single-branch --branch rewrite-rust-github https://github.com/nikita-skobov/git-monorepo-tools .
+        uses: actions/checkout@v2.3.2
+      - name: lstest
+        run: ls -l
       - name: install_git_filter_repo
         run: bash .github/install-git-filter-repo.sh ${{ matrix.job.os }}
       - name: build_executable
